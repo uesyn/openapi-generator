@@ -78,8 +78,8 @@ elif [ "$NODE_INDEX" = "4" ]; then
   echo "Running node $NODE_INDEX to test 'samples.circleci.node4' defined in pom.xml ..."
 
   # to test perl
-  cpanm --local-lib=~/perl5 local::lib && eval $(perl -I ~/perl5/lib/perl5/ -Mlocal::lib)
-  cpanm --quiet --no-interactive Test::Exception Test::More Log::Any LWP::UserAgent URI::Query Module::Runtime DateTime Module::Find Moose::Role JSON
+  /usr/local/bin/cpanm --local-lib=~/perl5 local::lib && eval $(perl -I ~/perl5/lib/perl5/ -Mlocal::lib)
+  /usr/local/bin/cpanm --quiet --no-interactive Test::Exception Test::More Log::Any LWP::UserAgent URI::Query Module::Runtime DateTime Module::Find Moose::Role JSON
   mvn integration-test -f samples/client/petstore/perl/pom.xml
 
   #mvn --no-snapshot-updates --quiet verify -Psamples.circleci.node4 -Dorg.slf4j.simpleLogger.defaultLogLevel=error
