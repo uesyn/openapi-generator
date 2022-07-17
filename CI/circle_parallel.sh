@@ -77,15 +77,15 @@ elif [ "$NODE_INDEX" = "3" ]; then
 elif [ "$NODE_INDEX" = "4" ]; then
   echo "Running node $NODE_INDEX to test 'samples.circleci.node4' defined in pom.xml ..."
 
-  #mvn --no-snapshot-updates --quiet verify -Psamples.circleci.node4 -Dorg.slf4j.simpleLogger.defaultLogLevel=error
-  (cd samples/openapi3/client/petstore/python && make test)
-  (cd samples/openapi3/client/petstore/python-experimental && make test)
-  (cd samples/openapi3/client/3_0_3_unit_test/python-experimental && make test)
-
   # to test perl
   cpanm --local-lib=~/perl5 local::lib && eval $(perl -I ~/perl5/lib/perl5/ -Mlocal::lib)
   cpanm --quiet --no-interactive Test::Exception Test::More Log::Any LWP::UserAgent URI::Query Module::Runtime DateTime Module::Find Moose::Role JSON
   mvn integration-test -f samples/client/petstore/perl/pom.xml
+
+  #mvn --no-snapshot-updates --quiet verify -Psamples.circleci.node4 -Dorg.slf4j.simpleLogger.defaultLogLevel=error
+  (cd samples/openapi3/client/petstore/python && make test)
+  (cd samples/openapi3/client/petstore/python-experimental && make test)
+  (cd samples/openapi3/client/3_0_3_unit_test/python-experimental && make test)
 
 else
   echo "Running node $NODE_INDEX to test 'samples.circleci.others' defined in pom.xml ..."
